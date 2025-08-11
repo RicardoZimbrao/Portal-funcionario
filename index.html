@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificado de Emissão de Relatórios - TOTVS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input[type="text"] {
+      width: 320px;
+      padding: 8px;
+    }
+    button {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      display: none;
+    }
+    #imagensContainer {
+      margin-top: 30px;
+    }
+    #imagensContainer img {
+      max-width: 90%;
+      display: block;
+      margin: 20px auto;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h3>CERTIFICADO DE EMISSÃO DE RELATÓRIOS - TOTVS</h3>
+
+    <label for="txtGuid">Informe a identificação do relatório:</label><br />
+    <input type="text" id="txtGuid" placeholder="Digite o GUID" />
+    <span id="errorMsg" class="error">Por favor, insira um código válido.</span><br /><br />
+
+    <button onclick="verificarGuid()">Buscar</button>
+  </div>
+
+  <div id="imagensContainer" style="display: none;">
+    <img src="historico.html/Historico-escolar 1.png" alt="Página 1 do Histórico Escolar" />
+    <img src="historico.html/Historico-escolar 2.png" alt="Página 2 do Histórico Escolar" />
+    <img src="historico.html/Historico-escolar 3.png" alt="Página 3 do Histórico Escolar" />
+  </div>
+
+  <script>
+    function verificarGuid() {
+      const guidDigitado = document.getElementById('txtGuid').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+      const guidCorreto = '21e88145-4469-4842-9455-1f0ff2eceb78';
+      const imagens = document.getElementById('imagensContainer');
+
+      if (!guidDigitado) {
+        errorMsg.style.display = 'inline';
+        imagens.style.display = 'none';
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+
+      if (guidDigitado === guidCorreto) {
+        imagens.style.display = 'block';
+      } else {
+        // Abre página padrão com relatório, passando o guid digitado
+        const url = `RptFindReportByGuid.aspx?guid=${encodeURIComponent(guidDigitado)}`;
+        window.open(url, '_blank');
+      }
+    }
+  </script>
+</body>
+</html>
