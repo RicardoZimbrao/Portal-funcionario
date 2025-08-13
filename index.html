@@ -20,8 +20,19 @@
       color: red;
       display: none;
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
     #imagensContainer {
       margin-top: 30px;
+      display: none;
     }
     #imagensContainer img {
       max-width: 90%;
@@ -43,35 +54,74 @@
     <button onclick="verificarGuid()">Buscar</button>
   </div>
 
-  <div id="imagensContainer" style="display: none;">
-    <img src="historico.html/Historico-escolar 1.png" alt="Página 1 do Histórico Escolar" />
-    <img src="historico.html/Historico-escolar 2.png" alt="Página 2 do Histórico Escolar" />
-    <img src="historico.html/Historico-escolar 3.png" alt="Página 3 do Histórico Escolar" />
+  <!-- Tabela de Informações -->
+  <div id="infoContainer" style="display: none;">
+    <table>
+      <thead>
+        <tr>
+          <th>Identificação</th>
+          <th>Descrição</th>
+          <th>Data de Criação</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="tdIdentificacao"></td>
+          <td id="tdDescricao"></td>
+          <td id="tdData"></td>
+          <td><button onclick="mostrarImagens()">Visualizar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Imagens -->
+  <div id="imagensContainer">
+    <img src="historico/historico-escolar1.png" alt="Página 1 do Histórico Escolar" />
+    <img src="historico/historico-escolar2.png" alt="Página 2 do Histórico Escolar" />
+    <img src="historico/historico-escolar3.png" alt="Página 3 do Histórico Escolar" />
   </div>
 
   <script>
     function verificarGuid() {
       const guidDigitado = document.getElementById('txtGuid').value.trim();
       const errorMsg = document.getElementById('errorMsg');
-      const guidCorreto = '21e88145-4469-4842-9455-1f0ff2eceb78';
+      const infoContainer = document.getElementById('infoContainer');
       const imagens = document.getElementById('imagensContainer');
+      const guidCorreto = '21e88145-4469-4842-9455-1f0ff2eceb78';
 
       if (!guidDigitado) {
         errorMsg.style.display = 'inline';
+        infoContainer.style.display = 'none';
         imagens.style.display = 'none';
         return;
       }
 
       errorMsg.style.display = 'none';
+      imagens.style.display = 'none';
 
       if (guidDigitado === guidCorreto) {
-        imagens.style.display = 'block';
+        // Preenche a tabela
+        document.getElementById('tdIdentificacao').textContent = guidCorreto;
+        document.getElementById('tdDescricao').textContent = 'OXY.EDU.2.0006.01 - HISTÓRICO ESCOLAR GRADUAÇÃO.PDF';
+        document.getElementById('tdData').textContent = '07/08/2025 17:49:04';
+
+        infoContainer.style.display = 'block';
       } else {
-        // Abre página padrão com relatório, passando o guid digitado
+        infoContainer.style.display = 'none';
         const url = `RptFindReportByGuid.aspx?guid=${encodeURIComponent(guidDigitado)}`;
         window.open(url, '_blank');
       }
     }
+
+    function mostrarImagens() {
+      const imagens = document.getElementById('imagensContainer');
+      imagens.style.display = 'block';
+      // Scroll suave até as imagens
+      imagens.scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
+
