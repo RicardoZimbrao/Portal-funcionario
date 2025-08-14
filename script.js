@@ -81,16 +81,19 @@ function mostrarResultadoEncontrado() {
 }
 
 function visualizarRelatorio() {
+    const guid = "21e88145-4469-4842-9455-1f0ff2eceb78";
+    const pdfUrl = `${guid}/Historico-escolar.pdf`;
+    
     // 1. Fazer download do PDF
     const downloadLink = document.createElement('a');
-    downloadLink.href = 'Historico-escolar.pdf';
+    downloadLink.href = pdfUrl;
     downloadLink.download = 'Historico-escolar.pdf';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
     
     // 2. Abrir PDF em nova aba para visualização
-    window.open('Historico-escolar.pdf', '_blank');
+    window.open(pdfUrl, '_blank');
 }
 
 // Permitir busca ao pressionar Enter no campo de input
