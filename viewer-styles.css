@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.viewer-container {
+    max-width: 100%;
+    margin: 0;
+    background-color: white;
+    min-height: 100vh;
+}
+
+.viewer-header {
+    background-color: #2c5aa0;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #1a4480;
+}
+
+.viewer-header h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.viewer-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.viewer-controls button {
+    padding: 8px 12px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.viewer-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.pdf-viewer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.pdf-viewer iframe {
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.viewer-footer {
+    background-color: #e8e8e8;
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    font-size: 11px;
+    color: #666;
+}
+
+.viewer-footer p {
+    margin: 2px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .viewer-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .viewer-controls {
+        justify-content: center;
+    }
+    
+    .pdf-viewer {
+        padding: 10px;
+    }
+    
+    .pdf-viewer iframe {
+        height: 600px;
+    }
+}
