@@ -1,119 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Certificado de Emissão de Relatórios - TOTVS</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    input[type="text"] {
-      width: 320px;
-      padding: 8px;
-    }
-    button {
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-    #imagensContainer {
-      margin-top: 30px;
-      display: none;
-    }
-    #imagensContainer img {
-      max-width: 90%;
-      display: block;
-      margin: 20px auto;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      border-radius: 6px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTVS - Certificado de Emissão de Relatórios</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div>
-    <h3>CERTIFICADO DE EMISSÃO DE RELATÓRIOS - TOTVS</h3>
+    <div class="container">
+        <div class="header">
+            <h1>TOTVS - Certificado de Emissão de Relatórios</h1>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-form">
+                <label for="relatorio-id">Informe a identificação do relatório:</label>
+                <div class="input-group">
+                    <input type="text" id="relatorio-id" placeholder="Digite a identificação do relatório">
+                    <button type="button" id="buscar-btn" onclick="buscarRelatorio()">Buscar</button>
+                </div>
+            </div>
+            
+            <div id="resultado-busca" class="resultado-busca hidden">
+                <!-- Resultado da busca será inserido aqui -->
+            </div>
+        </div>
+    </div>
 
-    <label for="txtGuid">Informe a identificação do relatório:</label><br />
-    <input type="text" id="txtGuid" placeholder="Digite o GUID" />
-    <br /><br />
-    <button onclick="verificarGuid()">Buscar</button>
-    <div id="errorMsg" class="error" style="display: none;">ERRO: identificador incorreto.</div>
-  </div>
-
-  <!-- Tabela de Informações -->
-  <div id="infoContainer" style="display: none;">
-    <table>
-      <thead>
-        <tr>
-          <th>Identificação</th>
-          <th>Descrição</th>
-          <th>Data de Criação</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td id="tdIdentificacao"></td>
-          <td id="tdDescricao"></td>
-          <td id="tdData"></td>
-          <td><button onclick="mostrarImagens()">Visualizar</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Imagens -->
-  <div id="imagensContainer">
-    <img src="historico/historico-escolar1.png" alt="Página 1 do Histórico Escolar" />
-    <img src="historico/historico-escolar2.png" alt="Página 2 do Histórico Escolar" />
-    <img src="historico/historico-escolar3.png" alt="Página 3 do Histórico Escolar" />
-  </div>
-
-  <script>
-    function verificarGuid() {
-      const guidDigitado = document.getElementById('txtGuid').value.trim();
-      const errorMsg = document.getElementById('errorMsg');
-      const infoContainer = document.getElementById('infoContainer');
-      const imagens = document.getElementById('imagensContainer');
-      const guidCorreto = '21e88145-4469-4842-9455-1f0ff2eceb78';
-
-      // Oculta tudo antes de verificar
-      errorMsg.style.display = 'none';
-      infoContainer.style.display = 'none';
-      imagens.style.display = 'none';
-
-      if (!guidDigitado || guidDigitado !== guidCorreto) {
-        errorMsg.style.display = 'block';
-        return;
-      }
-
-      // Preenche a tabela e exibe
-      document.getElementById('tdIdentificacao').textContent = guidCorreto;
-      document.getElementById('tdDescricao').textContent = 'OXY.EDU.2.0006.01 - HISTÓRICO ESCOLAR GRADUAÇÃO.PDF';
-      document.getElementById('tdData').textContent = '07/08/2025 17:49:04';
-      infoContainer.style.display = 'block';
-    }
-
-    function mostrarImagens() {
-      const imagens = document.getElementById('imagensContainer');
-      imagens.style.display = 'block';
-      imagens.scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
